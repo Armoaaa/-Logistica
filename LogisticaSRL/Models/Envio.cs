@@ -7,19 +7,27 @@ namespace LogisticaSRL.Models
 {
     public class Envio
     {
+        [Key]
         public int IdEnvio { get; set; }
-        public int PersonaEmisoraId { get; set; }
+        public int IdPersonaEmisora { get; set; }
+        [ForeignKey("IdPersona")]
         public Persona PersonaEmisora { get; set; }
-        public int PersonaReceptoraId { get; set; }
+        [ForeignKey("IdPersona")]
+        public int IdPersonaReceptora { get; set; }
         public Persona PersonaReceptora { get; set; }
+        [ForeignKey("IdSucursal")]
         public int SucursalDespachoId { get; set; }
         public Sucursal SucursalDespacho { get; set; }
+        [ForeignKey("IdSucursal")]
         public int SucursalDestinoId { get; set; }
         public Sucursal SucursalDestino { get; set; }
+        [ForeignKey("IdCentral")]
         public int CentralDespachoId { get; set; }
         public Central CentralDespacho { get; set; }
+        [ForeignKey("IdCentral")]
         public int CentralDestinoId { get; set; }
         public Central CentralDestino { get; set; }
+        [required]
         public EstadoEnvio EstadoEnvio { get; set; }
         public string NumeroSeguimiento { get; set; }
         public string Dimensiones { get; set; }

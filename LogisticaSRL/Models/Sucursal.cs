@@ -7,7 +7,9 @@ namespace LogisticaSRL.Models
 {
     public class Sucursal
     {
+        [Key]
         public int IdSucursal { get; set; }
+        [Required]
         public int Numero { get; set; }
         public string Nombre { get; set; }
         public int DomicilioId { get; set; }

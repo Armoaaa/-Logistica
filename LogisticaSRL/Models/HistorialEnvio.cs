@@ -8,9 +8,10 @@ namespace LogisticaSRL.Models
 {
     public class HistorialEnvio
     {
-        public int Id { get; set; }
+        [Key]
+        public int IdHistorialEnvio { get; set; }
 
-        [Required]
+            [Required]
         public int EnvioId { get; set; }
         public Envio Envio { get; set; }
 
@@ -18,7 +19,6 @@ namespace LogisticaSRL.Models
         public int SucursalId { get; set; }
         public Sucursal Sucursal { get; set; }
 
-        [Required]
         public EstadoEnvio EstadoAnterior { get; set; }
 
         [Required]
@@ -26,18 +26,8 @@ namespace LogisticaSRL.Models
 
         [Required]
         public DateTime FechaCambio { get; set; }
-
-        [StringLength(255)]
-        public string Descripcion { get; set; }
-
-        [Required]
-        [StringLength(100)]
-        public string CreadoPor { get; set; }
-
         [Required]
         public DateTime FechaCreacion { get; set; }
 
-        [StringLength(500)]
-        public string Observaciones { get; set; }
     }
 }
