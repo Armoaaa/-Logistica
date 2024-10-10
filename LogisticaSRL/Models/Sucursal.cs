@@ -7,15 +7,15 @@ namespace LogisticaSRL.Models;
 
 public class Sucursal
 {
-    [Key]
+    //[Key]
     public int IdSucursal { get; set; }
     //[Required]
-    public int Numero { get; set; }
+    public int NumeroS { get; set; }
     public string Nombre { get; set; }
     public int DomicilioId { get; set; }
     //[Required]
     public Domicilio domicilio { get; set; }
     //[ForeignKey("IdCentral")]
-    public int CentralId { get; set; }
+    public int IdCentral { get; set; }
     public Central Central { get; set; }
 }

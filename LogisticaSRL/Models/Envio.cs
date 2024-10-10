@@ -32,7 +32,7 @@ public class Envio
     //[ForeignKey("IdCentral")]
     public int CentralDestinoId { get; set; }
     public Central centralDestino { get; set; }
-    [required]
+    //[required]
     public EstadoEnvio estadoEnvio { get; set; }
     public string Dimensiones { get; set; }
     public decimal Peso { get; set; }
