@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace LogisticaSRL.Models
-{
+namespace LogisticaSRL.Models;
+
 public class TipoDNI
 {
-    [Key]
-    public int IdTipoDni { get; set; }
-    public bool DNIextranjero { get; set; }
-    public string Pais { get; set; }
-}
+//[Key]
+public int IdTipoDni { get; set; }
+public bool DNIextranjero { get; set; }
+public string Pais { get; set; }
 }
