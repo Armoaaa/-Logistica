@@ -10,7 +10,7 @@ public class Central
     //[Key]
     public int IdCentral { get; set; }
 
-    public string NombreC { get; set; }
+    public string Nombre { get; set; }
     //[ForeignKey("IdDomicilio")]
     public int DomicilioId { get; set; }
     //[Required]
