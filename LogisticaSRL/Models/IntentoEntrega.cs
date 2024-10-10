@@ -19,7 +19,7 @@ namespace LogisticaSRL.Models
         [ForeignKey("IdSucursal")]
         public int SucursalId { get; set; }
         [Required]
-        public Sucursal Sucursal { get; set; }
+        public Sucursal sucursal { get; set; }
         public int NumeroIntento { get; set; }
         [Required]
         public bool Entregado { get; set; }
