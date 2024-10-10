@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace LogisticaSRL.Models
 {
-    public class Surcusal
+    public class Sucursal
     {
-        public int IdSurcusal { get; set; }
+        public int IdSucursal { get; set; }
         public int Numero { get; set; }
         public string Nombre { get; set; }
         public int DomicilioId { get; set; }

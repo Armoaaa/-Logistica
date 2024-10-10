@@ -7,7 +7,7 @@ namespace LogisticaSRL.Models
 {
     public class Envio
     {
-        public int Id { get; set; }
+        public int IdEnvio { get; set; }
         public int PersonaEmisoraId { get; set; }
         public Persona PersonaEmisora { get; set; }
         public int PersonaReceptoraId { get; set; }
@@ -26,5 +26,6 @@ namespace LogisticaSRL.Models
         public decimal Peso { get; set; }
         public DateTime FechaCreacion { get; set; }
         public DateTime FechaActualizacion { get; set; }
+        public ICollection<HistorialEnvio> Historiales { get; set; }
     }
 }
