@@ -5,8 +5,4 @@ using System.Threading.Tasks;
 
 namespace LogisticaSRL.Models
 {
-    public class HistorialEnvio
-    {
-        
-    }
 }
