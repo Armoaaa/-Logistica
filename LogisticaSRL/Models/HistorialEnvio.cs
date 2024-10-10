@@ -11,18 +11,18 @@ namespace LogisticaSRL.Models
         [Key]
         public int IdHistorialEnvio { get; set; }
 
-            [Required]
-        public int EnvioId { get; set; }
-        public Envio Envio { get; set; }
+        [Required]
+        public int NumeroSeguimiento { get; set; }
+        public Envio envio { get; set; }
 
         [Required]
         public int SucursalId { get; set; }
-        public Sucursal Sucursal { get; set; }
+        public Sucursal sucursal { get; set; }
 
-        public EstadoEnvio EstadoAnterior { get; set; }
+        public EstadoEnvio estadoEnvio { get; set; }
 
         [Required]
-        public EstadoEnvio EstadoNuevo { get; set; }
+        public EstadoEnvio estadoEnvio { get; set; }
 
         [Required]
         public DateTime FechaCambio { get; set; }

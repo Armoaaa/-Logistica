@@ -11,15 +11,16 @@ namespace LogisticaSRL.Models
         [Key]
         public int IdPersona { get; set; }
 
-        [Required]
+        [ForeignKey("IdTipoDNI")]
         public int TipoDNIId { get; set; }
+        [Required]
         public TipoDNI TipoDNI { get; set; }
 
-        [Required]
+        [ForeignKey("IdDomicilio")]
         public int DomicilioId { get; set; }
-        public Domicilio Domicilio { get; set; }
-
         [Required]
+        public Domicilio domicilio { get; set; }
+
         public int DNI { get; set; }
 
         public string PaisResidente { get; set; }

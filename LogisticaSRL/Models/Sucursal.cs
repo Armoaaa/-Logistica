@@ -13,7 +13,8 @@ namespace LogisticaSRL.Models
         public int Numero { get; set; }
         public string Nombre { get; set; }
         public int DomicilioId { get; set; }
-        public Domicilio Domicilio { get; set; }
+        public Domicilio domicilio { get; set; }
+        [ForeignKey("IdCentral")]
         public int CentralId { get; set; }
         public Central Central { get; set; }
     }
