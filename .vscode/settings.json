@@ -2,5 +2,5 @@
     "csharp.preview.improvedLaunchExperience": true,
     "dotnet.automaticallyCreateSolutionInWorkspace": true,
     "dotnet.automaticallySyncWithActiveItem": true,
-    "files.autoSave": "onWindowChange"
+    "files.autoSave": "afterDelay"
 }

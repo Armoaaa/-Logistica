@@ -7,10 +7,10 @@ namespace LogisticaSRL.Models
 {
     public class Central
     {
-        public int IdCentral { get; set; }
+        public int Id { get; set; }
         public string Nombre { get; set; }
         public int DomicilioId { get; set; }
         public Domicilio Domicilio { get; set; }
-        public ICollection<Surcusal> Surcusal { get; set; }
+        public ICollection<Sucursal> Sucursales { get; set; }
     }
 }
