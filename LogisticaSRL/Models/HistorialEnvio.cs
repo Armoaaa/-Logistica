@@ -8,25 +8,25 @@ namespace LogisticaSRL.Models;
 
 public class HistorialEnvio
 {
-    //[Key]
+    [Key]
     public int IdHistorialEnvio { get; set; }
 
-    //[Required]
+    [Required]
     public int NumeroSeguimiento { get; set; }
     public Envio envio { get; set; }
 
-    //[Required]
+    [Required]
     public int SucursalId { get; set; }
     public Sucursal sucursal { get; set; }
 
     public EstadoEnvio estadoEnvio { get; set; }
 
-    //[Required]
+    [Required]
     public EstadoEnvio estadoEnvio { get; set; }
 
-    //[Required]
+    [Required]
     public DateTime FechaCambio { get; set; }
-    //[Required]
+    [Required]
     public DateTime FechaCreacion { get; set; }
 
 }

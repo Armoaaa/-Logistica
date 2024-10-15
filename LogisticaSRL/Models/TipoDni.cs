@@ -7,7 +7,7 @@ namespace LogisticaSRL.Models;
 
 public class TipoDNI
 {
-//[Key]
+[Key]
 public int IdTipoDni { get; set; }
 public bool DNIextranjero { get; set; }
 public string Pais { get; set; }

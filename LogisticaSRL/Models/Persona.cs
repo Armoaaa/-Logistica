@@ -8,17 +8,17 @@ namespace LogisticaSRL.Models;
 
 public class Persona
 {
-    //[Key]
+    [Key]
     public int IdPersona { get; set; }
 
-    //[ForeignKey("IdTipoDNI")]
+    [ForeignKey("IdTipoDNI")]
     public int TipoDNIId { get; set; }
-    ////[Required]
+    [Required]
     public TipoDNI TipoDNI { get; set; }
 
-    //[ForeignKey("IdDomicilio")]
+    [ForeignKey("IdDomicilio")]
     public int DomicilioId { get; set; }
-    ////[Required]
+    [Required]
     public Domicilio domicilio { get; set; }
 
     public int DNI { get; set; }

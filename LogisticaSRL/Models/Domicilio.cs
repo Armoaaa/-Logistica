@@ -8,7 +8,7 @@ namespace LogisticaSRL.Models;
 
 public class Domicilio
 {
-    //[Key]
+    [Key]
     public int Id { get; set; }
     public string Pais { get; set;}
     public string Ciudad { get; set; }

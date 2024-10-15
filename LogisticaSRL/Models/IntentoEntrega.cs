@@ -8,23 +8,23 @@ namespace LogisticaSRL.Models;
 
 public class IntentoEntrega
 {
-    //[Key]
+    [Key]
     public int IdIntentoEntrega { get; set; }
 
-    //[ForeignKey("NumeroSeguimiento")]
+    [ForeignKey("NumeroSeguimiento")]
     public int NumeroSeguimiento { get; set; }
-    //[Required]
+    [Required]
     public Envio Envio { get; set; }
 
     [ForeignKey("IdSucursal")]
     public int SucursalId { get; set; }
-    //[Required]
+    [Required]
     public Sucursal sucursal { get; set; }
     public int NumeroIntento { get; set; }
-    //[Required]
+    [Required]
     public bool Entregado { get; set; }
 
-    //[Required]
+    [Required]
     public DateTime FechaIntento { get; set; }
 
 }
