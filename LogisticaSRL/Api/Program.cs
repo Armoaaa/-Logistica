@@ -12,12 +12,12 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-builder.Services.AddDbContext<GestionPedidoDbContext>(options => options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));    
+builder.Services.AddDbContext<GestionPedidoBdContext>(options => options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));    
 
-var options = new DbContextOptionsBuilder<GestionPedidoDbContext>();
+var options = new BdContextOptionsBuilder<GestionPedidoDbContext>();
 options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
 
-var context = new GestionPedidoDbContext(options.Options);
+var context = new GestionPedidoBdContext(options.Options);
 
 context.Database.EnsureCreated();
 

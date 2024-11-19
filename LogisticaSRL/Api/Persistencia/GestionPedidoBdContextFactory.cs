@@ -5,11 +5,11 @@
 
    namespace Api.Persistencia
    {
-       public class GestionPedidoDbContextFactory : IDesignTimeDbContextFactory<GestionPedidoDbContext>
+       public class GestionPedidoBdContextFactory : IDesignTimeBdContextFactory<GestionPedidoBdContext>
        {
-           public GestionPedidoDbContext CreateDbContext(string[] args)
+           public GestionPedidoBdContext CreateDbContext(string[] args)
            {
-               var optionsBuilder = new DbContextOptionsBuilder<GestionPedidoDbContext>();
+               var optionsBuilder = new BdContextOptionsBuilder<GestionPedidoBdContext>();
                var configuration = new ConfigurationBuilder()
                    .SetBasePath(Directory.GetCurrentDirectory())
                    .AddJsonFile("appsettings.json")
@@ -18,7 +18,7 @@
                var connectionString = configuration.GetConnectionString("DefaultConnection");
                optionsBuilder.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
 
-               return new GestionPedidoDbContext(optionsBuilder.Options);
+               return new GestionPedidoBdContext(optionsBuilder.Options);
            }
        }
    }
