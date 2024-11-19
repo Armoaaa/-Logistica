@@ -1,6 +1,0 @@
-@LogisticaSRL.Api_HostAddress = http://localhost:5172
-
-GET {{LogisticaSRL.Api_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
