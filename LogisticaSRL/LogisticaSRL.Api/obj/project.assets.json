@@ -1168,27 +1168,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Lab15-PC01\\.nuget\\packages\\": {}
+    "C:\\Users\\armoa\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Lab15-PC01\\Documents\\GitHub\\-Logistica\\LogisticaSRL\\LogisticaSRL.Api\\LogisticaSRL.Api.csproj",
+      "projectUniqueName": "C:\\Users\\armoa\\OneDrive\\Documentos\\GitHub\\-Logistica\\LogisticaSRL\\LogisticaSRL.Api\\LogisticaSRL.Api.csproj",
       "projectName": "LogisticaSRL.Api",
-      "projectPath": "C:\\Users\\Lab15-PC01\\Documents\\GitHub\\-Logistica\\LogisticaSRL\\LogisticaSRL.Api\\LogisticaSRL.Api.csproj",
-      "packagesPath": "C:\\Users\\Lab15-PC01\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Lab15-PC01\\Documents\\GitHub\\-Logistica\\LogisticaSRL\\LogisticaSRL.Api\\obj\\",
+      "projectPath": "C:\\Users\\armoa\\OneDrive\\Documentos\\GitHub\\-Logistica\\LogisticaSRL\\LogisticaSRL.Api\\LogisticaSRL.Api.csproj",
+      "packagesPath": "C:\\Users\\armoa\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\armoa\\OneDrive\\Documentos\\GitHub\\-Logistica\\LogisticaSRL\\LogisticaSRL.Api\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Lab15-PC01\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\armoa\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -1248,7 +1245,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.307/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
