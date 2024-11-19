@@ -11,13 +11,18 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-builder.Services.AddDbContext<GestionPedidoBdContext>(options => options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));    
+var connectionString = "Server=localhost;Database=LogisticaSRL;User=root;Password=;";
+if (string.IsNullOrEmpty(connectionString))
+{
+    throw new InvalidOperationException("Connection string 'LogisticaBD' not found.");
+}
+builder.Services.AddDbContext<GestionPedidoDbContext>(options => 
+    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));    
 
-var options = new BdContextOptionsBuilder<GestionPedidoDbContext>();
+var options = new DbContextOptionsBuilder<GestionPedidoDbContext>();
 options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
 
-var context = new GestionPedidoBdContext(options.Options);
+var context = new GestionPedidoDbContext(options.Options);
 
 context.Database.EnsureCreated();
 

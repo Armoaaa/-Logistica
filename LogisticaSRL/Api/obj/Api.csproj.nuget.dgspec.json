@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Lab15-PC01\\Documents\\GitHub\\-Logistica\\LogisticaSRL\\Api\\Api.csproj": {}
+    "C:\\Users\\Lab15-PC01\\Documents\\-Logistica\\LogisticaSRL\\api\\Api.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Lab15-PC01\\Documents\\GitHub\\-Logistica\\LogisticaSRL\\Api\\Api.csproj": {
+    "C:\\Users\\Lab15-PC01\\Documents\\-Logistica\\LogisticaSRL\\api\\Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Lab15-PC01\\Documents\\GitHub\\-Logistica\\LogisticaSRL\\Api\\Api.csproj",
+        "projectUniqueName": "C:\\Users\\Lab15-PC01\\Documents\\-Logistica\\LogisticaSRL\\api\\Api.csproj",
         "projectName": "Api",
-        "projectPath": "C:\\Users\\Lab15-PC01\\Documents\\GitHub\\-Logistica\\LogisticaSRL\\Api\\Api.csproj",
+        "projectPath": "C:\\Users\\Lab15-PC01\\Documents\\-Logistica\\LogisticaSRL\\api\\Api.csproj",
         "packagesPath": "C:\\Users\\Lab15-PC01\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Lab15-PC01\\Documents\\GitHub\\-Logistica\\LogisticaSRL\\Api\\obj\\",
+        "outputPath": "C:\\Users\\Lab15-PC01\\Documents\\-Logistica\\LogisticaSRL\\api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Lab15-PC01\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -29,8 +29,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\Lab15-PC01\\Documents\\GitHub\\-Logistica\\LogisticaSRL\\Biblioteca\\Biblioteca.csproj": {
-                "projectPath": "C:\\Users\\Lab15-PC01\\Documents\\GitHub\\-Logistica\\LogisticaSRL\\Biblioteca\\Biblioteca.csproj"
+              "C:\\Users\\Lab15-PC01\\Documents\\-Logistica\\LogisticaSRL\\Biblioteca\\Biblioteca.csproj": {
+                "projectPath": "C:\\Users\\Lab15-PC01\\Documents\\-Logistica\\LogisticaSRL\\Biblioteca\\Biblioteca.csproj"
               }
             }
           }
@@ -56,21 +56,21 @@
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[9.0.0, )"
+              "version": "[8.0.2, )"
             },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[9.0.0, )"
+              "version": "[8.0.2, )"
             },
             "Microsoft.EntityFrameworkCore.Relational": {
               "target": "Package",
-              "version": "[9.0.0, )"
+              "version": "[8.0.2, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[9.0.0, )"
+              "version": "[8.0.2, )"
             },
             "Pomelo.EntityFrameworkCore.MySql": {
               "target": "Package",
@@ -108,14 +108,14 @@
         }
       }
     },
-    "C:\\Users\\Lab15-PC01\\Documents\\GitHub\\-Logistica\\LogisticaSRL\\Biblioteca\\Biblioteca.csproj": {
+    "C:\\Users\\Lab15-PC01\\Documents\\-Logistica\\LogisticaSRL\\Biblioteca\\Biblioteca.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Lab15-PC01\\Documents\\GitHub\\-Logistica\\LogisticaSRL\\Biblioteca\\Biblioteca.csproj",
+        "projectUniqueName": "C:\\Users\\Lab15-PC01\\Documents\\-Logistica\\LogisticaSRL\\Biblioteca\\Biblioteca.csproj",
         "projectName": "Biblioteca",
-        "projectPath": "C:\\Users\\Lab15-PC01\\Documents\\GitHub\\-Logistica\\LogisticaSRL\\Biblioteca\\Biblioteca.csproj",
+        "projectPath": "C:\\Users\\Lab15-PC01\\Documents\\-Logistica\\LogisticaSRL\\Biblioteca\\Biblioteca.csproj",
         "packagesPath": "C:\\Users\\Lab15-PC01\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Lab15-PC01\\Documents\\GitHub\\-Logistica\\LogisticaSRL\\Biblioteca\\obj\\",
+        "outputPath": "C:\\Users\\Lab15-PC01\\Documents\\-Logistica\\LogisticaSRL\\Biblioteca\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Lab15-PC01\\AppData\\Roaming\\NuGet\\NuGet.Config",
