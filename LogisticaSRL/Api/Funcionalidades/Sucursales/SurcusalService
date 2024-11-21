@@ -1,0 +1,61 @@
+using System;
+using System.Threading.Tasks;
+using LogisticaSRL.Persistencia;
+using LogisticaSRL.Dominio;
+namespace Api.Funcionalidades{
+public class SucursalService
+{
+    private readonly DbContext _context;
+
+    public SucursalService(DbContext context)
+    {
+        _context = context;
+    }
+
+    public async Task<SucursalQueryDto> CreateSucursalAsync(SucursalCommandDto sucursalDto)
+    {
+        var sucursal = new Sucursal
+        {
+            Id = sucursalDto.Id,
+            NumeroS = sucursalDto.NumeroS,
+            Nombre = sucursalDto.Nombre,
+            DomicilioId = sucursalDto.DomicilioId,
+            IdCentral = sucursalDto.IdCentral
+        };
+
+        _context.Sucursales.Add(sucursal);
+        await _context.SaveChangesAsync();
+
+        return new SucursalQueryDto
+        {
+            Id = sucursal.Id,
+            NumeroS = sucursal.NumeroS,
+            Nombre = sucursal.Nombre,
+            DomicilioId = sucursal.DomicilioId,
+            IdCentral = sucursal.IdCentral
+        };
+    }
+
+    public async Task<SucursalQueryDto> UpdateSucursalAsync(Guid id, SucursalCommandDto sucursalDto)
+    {
+        var sucursal = await _context.Sucursales.FindAsync(id);
+        if (sucursal == null) return null;
+
+        sucursal.NumeroS = sucursalDto.NumeroS;
+        sucursal.Nombre = sucursalDto.Nombre;
+        sucursal.DomicilioId = sucursalDto.DomicilioId;
+        sucursal.IdCentral = sucursalDto.IdCentral;
+
+        await _context.SaveChangesAsync();
+
+        return new SucursalQueryDto
+        {
+            Id = sucursal.Id,
+            NumeroS = sucursal.NumeroS,
+            Nombre = sucursal.Nombre,
+            DomicilioId = sucursal.DomicilioId,
+            IdCentral = sucursal.IdCentral
+        };
+    }
+} 
+}

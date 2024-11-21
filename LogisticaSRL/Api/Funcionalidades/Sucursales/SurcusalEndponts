@@ -1,0 +1,51 @@
+using System;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using LogisticaSRL.Persistencia;
+using LogisticaSRL.Dominio;
+
+namespace Api.Funcionalidades
+{
+    public class SucursalEndpoints
+    {
+        private readonly SucursalService _sucursalService;
+
+        public SucursalEndpoints(SucursalService sucursalService)
+        {
+            _sucursalService = sucursalService;
+        }
+
+        public async Task<IActionResult> CreateSucursal(HttpContext context)
+        {
+            var sucursalDto = await context.Request.ReadFromJsonAsync<SucursalCommandDto>();
+            var result = await _sucursalService.CreateSucursalAsync(sucursalDto);
+            return new CreatedAtActionResult(nameof(GetSucursalById), "Sucursal", new { id = result.Id }, result);
+        }
+
+        public async Task<IActionResult> UpdateSucursal(HttpContext context, Guid id)
+        {
+            var sucursalDto = await context.Request.ReadFromJsonAsync<SucursalCommandDto>();
+            var result = await _sucursalService.UpdateSucursalAsync(id, sucursalDto);
+            if (result == null) return new NotFoundResult();
+
+            return new OkObjectResult(result);
+        }
+
+        public async Task<IActionResult> DeleteSucursal(HttpContext context, Guid id)
+        {
+            var success = await _sucursalService.DeleteSucursalAsync(id);
+            if (!success) return new NotFoundResult();
+
+            return new NoContentResult();
+        }
+
+        public async Task<IActionResult> GetSucursalById(HttpContext context, Guid id)
+        {
+            var result = await _sucursalService.GetSucursalByIdAsync(id);
+            if (result == null) return new NotFoundResult();
+
+            return new OkObjectResult(result);
+        }
+    }
+}

@@ -1,0 +1,100 @@
+using System;
+using System.Threading.Tasks;
+using LogisticaSRL.Persistencia;
+using LogisticaSRL.Dominio;
+namespace Api.Funcionalidades
+{   
+public class EnviosService
+{
+    private readonly GestionPedidoDbContext _context;
+
+    public EnviosService(GestionPedidoDbContext context)
+    {
+        _context = context;
+    }
+
+    public async Task<EnviosQueryDto> CreateEnvioAsync(EnviosCommandDto envioDto)
+    {
+        var envio = new Envio
+        {
+            Id = envioDto.Id,
+            IdPersonaEmisora = envioDto.IdPersonaEmisora,
+            IdPersonaReceptora = envioDto.IdPersonaReceptora,
+            SucursalDespachoId = envioDto.SucursalDespachoId,
+            SucursalDestinoId = envioDto.SucursalDestinoId,
+            CentralDespachoId = envioDto.CentralDespachoId,
+            CentralDestinoId = envioDto.CentralDestinoId,
+            Dimensiones = envioDto.Dimensiones,
+            Peso = envioDto.Peso,
+            FechaCreacion = DateTime.UtcNow,
+            FechaActualizacion = DateTime.UtcNow
+        };
+
+        _context.Envios.Add(envio);
+        await _context.SaveChangesAsync();
+
+        return new EnviosQueryDto
+        {
+            Id = envio.Id,
+            NumeroSeguimiento = envio.NumeroSeguimiento,
+            PersonaEmisora = envio.PersonaEmisora,
+            PersonaReceptora = envio.PersonaReceptora,
+            SucursalDespacho = envio.SucursalDespacho,
+            SucursalDestino = envio.SucursalDestino,
+            CentralDespacho = envio.CentralDespacho,
+            CentralDestino = envio.CentralDestino,
+            EstadoEnvio = envio.EstadoEnvio,
+            Dimensiones = envio.Dimensiones,
+            Peso = envio.Peso,
+            FechaCreacion = envio.FechaCreacion,
+            FechaActualizacion = envio.FechaActualizacion
+        };
+    }
+
+    public async Task<EnviosQueryDto> UpdateEnvioAsync(Guid id, EnviosCommandDto envioDto)
+    {
+        var envio = await _context.Envios.FindAsync(id);
+        if (envio == null) return null;
+
+        envio.IdPersonaEmisora = envioDto.IdPersonaEmisora;
+        envio.IdPersonaReceptora = envioDto.IdPersonaReceptora;
+        envio.SucursalDespachoId = envioDto.SucursalDespachoId;
+        envio.SucursalDestinoId = envioDto.SucursalDestinoId;
+        envio.CentralDespachoId = envioDto.CentralDespachoId;
+        envio.CentralDestinoId = envioDto.CentralDestinoId;
+        envio.Dimensiones = envioDto.Dimensiones;
+        envio.Peso = envioDto.Peso;
+        envio.FechaActualizacion = DateTime.UtcNow;
+
+        await _context.SaveChangesAsync();
+
+        return new EnviosQueryDto
+        {
+            Id = envio.Id,
+            NumeroSeguimiento = envio.NumeroSeguimiento,
+            PersonaEmisora = envio.PersonaEmisora,
+            PersonaReceptora = envio.PersonaReceptora,
+            SucursalDespacho = envio.SucursalDespacho,
+            SucursalDestino = envio.SucursalDestino,
+            CentralDespacho = envio.CentralDespacho,
+            CentralDestino = envio.CentralDestino,
+            EstadoEnvio = envio.EstadoEnvio,
+            Dimensiones = envio.Dimensiones,
+            Peso = envio.Peso,
+            FechaCreacion = envio.FechaCreacion,
+            FechaActualizacion = envio.FechaActualizacion
+        };
+    }
+
+    public async Task<bool> DeleteEnvioAsync(Guid id)
+    {
+        var envio = await _context.Envios.FindAsync(id);
+        if (envio == null) return false;
+
+        _context.Envios.Remove(envio);
+        await _context.SaveChangesAsync();
+
+        return true;
+    }
+}
+}

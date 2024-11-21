@@ -1,56 +1,39 @@
 using Api.Persistencia;
-using Scalar.AspNetCore;
 using Microsoft.EntityFrameworkCore;
-using Biblioteca.Dominio;
-using Pomelo.EntityFrameworkCore.MySql;
+using Api.Funcionalidades.Centrales;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-builder.Services.AddDbContext<GestionPedidoDbContext>(options => options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));    
+builder.Services.AddDbContext<GestionPedidoDbContext>(options =>
+    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
-var options = new DbContextOptionsBuilder<GestionPedidoDbContext>();
-options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
-
-var context = new GestionPedidoDbContext(options.Options);
-
-context.Database.EnsureCreated();
+builder.Services.AddScoped<CentralService>();
 
 var app = builder.Build();
 
-using (var scope = app.Services.CreateScope())
-{
-    var scopedContext = scope.ServiceProvider.GetRequiredService<GestionPedidoDbContext>();
-    scopedContext.Database.EnsureCreated();
-
-    // Inicializar datos de prueba
-    if (!context.Envios.Any())
-    {
-        context.Envios.Add(new Envio
-        {
-            NumeroSeguimiento = 1,
-            Dimensiones = "10x10x10",
-            Peso = 1.5m,
-            // Otros campos necesarios
-        });
-        context.SaveChanges();
-    }
-}
-
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger(options =>
-    {
-        options.RouteTemplate = "/openapi/{documentName}.json";
-    });
-    app.MapScalarApiReference();
+    app.UseSwagger();
+    app.UseSwaggerUI();
     app.UseHttpsRedirection();
 }
+
+// Asegurar que la base de datos esté creada
+using (var scope = app.Services.CreateScope())
+{
+    var context = scope.ServiceProvider.GetRequiredService<GestionPedidoDbContext>();
+    context.Database.EnsureCreated();
+}
+
+// Mapear endpoints
+app.MapPost("/Centrales", async (CentralService centralService, CentralCommandDto dto) =>
+{
+    var result = await centralService.CreateCentralAsync(dto);
+    return Results.Created($"/Centrales/{result.IdCentral}", result);
+});
 
 app.Run();

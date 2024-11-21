@@ -1,0 +1,48 @@
+
+using Microsoft.AspNetCore.Mvc;
+
+
+namespace Api.Funcionalidades
+{
+    public class DomicilioEndpoints
+    {
+        private readonly DomicilioService _domicilioService;
+
+        public DomicilioEndpoints(DomicilioService domicilioService)
+        {
+            _domicilioService = domicilioService;
+        }
+
+        public async Task<IActionResult> CreateDomicilio(HttpContext context)
+        {
+            var domicilioDto = await context.Request.ReadFromJsonAsync<DomicilioCommandDto>();
+            var result = await _domicilioService.CreateDomicilioAsync(domicilioDto);
+            return new CreatedAtActionResult(nameof(GetDomicilioById), "Domicilio", new { id = result.Id }, result);
+        }
+
+        public async Task<IActionResult> UpdateDomicilio(HttpContext context, Guid id)
+        {
+            var domicilioDto = await context.Request.ReadFromJsonAsync<DomicilioCommandDto>();
+            var result = await _domicilioService.UpdateDomicilioAsync(id, domicilioDto);
+            if (result == null) return new NotFoundResult();
+
+            return new OkObjectResult(result);
+        }
+
+        public async Task<IActionResult> DeleteDomicilio(HttpContext context, Guid id)
+        {
+            var success = await _domicilioService.DeleteDomicilioAsync(id);
+            if (!success) return new NotFoundResult();
+
+            return new NoContentResult();
+        }
+
+        public async Task<IActionResult> GetDomicilioById(HttpContext context, Guid id)
+        {
+            var result = await _domicilioService.GetDomicilioByIdAsync(id);
+            if (result == null) return new NotFoundResult();
+
+            return new OkObjectResult(result);
+        }
+    }
+} 

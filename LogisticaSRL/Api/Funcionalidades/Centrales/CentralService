@@ -1,0 +1,60 @@
+namespace Api.Funcionalidades{
+public class CentralService
+{
+    private readonly DbContext _context;
+
+    public CentralService(DbContext context)
+    {
+        _context = context;
+    }
+
+    public async Task<CentralQueryDto> CreateCentralAsync(CentralCommandDto centralDto)
+    {
+        var central = new Central
+        {
+            Id = centralDto.Id,
+            Nombre = centralDto.Nombre,
+            DomicilioId = centralDto.DomicilioId
+        };
+
+        _context.Centrales.Add(central);
+        await _context.SaveChangesAsync();
+
+        return new CentralQueryDto
+        {
+            Id = central.Id,
+            Nombre = central.Nombre,
+            DomicilioId = central.DomicilioId
+        };
+    }
+
+    public async Task<CentralQueryDto> UpdateCentralAsync(Guid id, CentralCommandDto centralDto)
+    {
+        var central = await _context.Centrales.FindAsync(id);
+        if (central == null) return null;
+
+        central.Nombre = centralDto.Nombre;
+        central.DomicilioId = centralDto.DomicilioId;
+
+        await _context.SaveChangesAsync();
+
+        return new CentralQueryDto
+        {
+            Id = central.Id,
+            Nombre = central.Nombre,
+            DomicilioId = central.DomicilioId
+        };
+    }
+
+    public async Task<bool> DeleteCentralAsync(Guid id)
+    {
+        var central = await _context.Centrales.FindAsync(id);
+        if (central == null) return false;
+
+        _context.Centrales.Remove(central);
+        await _context.SaveChangesAsync();
+
+        return true;
+    }
+}
+}

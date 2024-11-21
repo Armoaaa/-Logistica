@@ -1,0 +1,51 @@
+using System;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using LogisticaSRL.Persistencia;
+using LogisticaSRL.Dominio;
+
+namespace Api.Funcionalidades
+{
+    public class CentralEndpoints
+    {
+        private readonly CentralService _centralService;
+
+        public CentralEndpoints(CentralService centralService)
+        {
+            _centralService = centralService;
+        }
+
+        public async Task<IActionResult> CreateCentral(HttpContext context)
+        {
+            var centralDto = await context.Request.ReadFromJsonAsync<CentralCommandDto>();
+            var result = await _centralService.CreateCentralAsync(centralDto);
+            return new CreatedAtActionResult(nameof(GetCentralById), "Central", new { id = result.Id }, result);
+        }
+
+        public async Task<IActionResult> UpdateCentral(HttpContext context, Guid id)
+        {
+            var centralDto = await context.Request.ReadFromJsonAsync<CentralCommandDto>();
+            var result = await _centralService.UpdateCentralAsync(id, centralDto);
+            if (result == null) return new NotFoundResult();
+
+            return new OkObjectResult(result);
+        }
+
+        public async Task<IActionResult> DeleteCentral(HttpContext context, Guid id)
+        {
+            var success = await _centralService.DeleteCentralAsync(id);
+            if (!success) return new NotFoundResult();
+
+            return new NoContentResult();
+        }
+
+        public async Task<IActionResult> GetCentralById(HttpContext context, Guid id)
+        {
+            var result = await _centralService.GetCentralByIdAsync(id);
+            if (result == null) return new NotFoundResult();
+
+            return new OkObjectResult(result);
+        }
+    }
+}

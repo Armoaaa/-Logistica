@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\armoa\\OneDrive\\Documentos\\GitHub\\-Logistica\\LogisticaSRL\\Api\\Api.csproj": {}
+    "C:\\Users\\armoa\\OneDrive\\Documentos\\GitHub\\-Logistica\\LogisticaSRL\\api\\Api.csproj": {}
   },
   "projects": {
-    "C:\\Users\\armoa\\OneDrive\\Documentos\\GitHub\\-Logistica\\LogisticaSRL\\Api\\Api.csproj": {
+    "C:\\Users\\armoa\\OneDrive\\Documentos\\GitHub\\-Logistica\\LogisticaSRL\\api\\Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\armoa\\OneDrive\\Documentos\\GitHub\\-Logistica\\LogisticaSRL\\Api\\Api.csproj",
+        "projectUniqueName": "C:\\Users\\armoa\\OneDrive\\Documentos\\GitHub\\-Logistica\\LogisticaSRL\\api\\Api.csproj",
         "projectName": "Api",
-        "projectPath": "C:\\Users\\armoa\\OneDrive\\Documentos\\GitHub\\-Logistica\\LogisticaSRL\\Api\\Api.csproj",
+        "projectPath": "C:\\Users\\armoa\\OneDrive\\Documentos\\GitHub\\-Logistica\\LogisticaSRL\\api\\Api.csproj",
         "packagesPath": "C:\\Users\\armoa\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\armoa\\OneDrive\\Documentos\\GitHub\\-Logistica\\LogisticaSRL\\Api\\obj\\",
+        "outputPath": "C:\\Users\\armoa\\OneDrive\\Documentos\\GitHub\\-Logistica\\LogisticaSRL\\api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\armoa\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -53,25 +53,25 @@
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[9.0.0, )"
+              "version": "[8.0.0, )"
             },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[9.0.0, )"
+              "version": "[8.0.0, )"
             },
             "Microsoft.EntityFrameworkCore.Relational": {
               "target": "Package",
-              "version": "[9.0.0, )"
+              "version": "[8.0.0, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[9.0.0, )"
+              "version": "[8.0.0, )"
             },
             "Pomelo.EntityFrameworkCore.MySql": {
               "target": "Package",
-              "version": "[8.0.2, )"
+              "version": "[8.0.0, )"
             },
             "Scalar.AspNetCore": {
               "target": "Package",

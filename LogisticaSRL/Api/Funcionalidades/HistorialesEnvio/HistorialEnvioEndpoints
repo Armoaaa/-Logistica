@@ -1,0 +1,51 @@
+using System;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using LogisticaSRL.Persistencia;
+using LogisticaSRL.Dominio;
+
+namespace Api.Funcionalidades
+{
+    public class HistorialEnvioEndpoints
+    {
+        private readonly HistorialEnvioService _historialEnvioService;
+
+        public HistorialEnvioEndpoints(HistorialEnvioService historialEnvioService)
+        {
+            _historialEnvioService = historialEnvioService;
+        }
+
+        public async Task<IActionResult> CreateHistorialEnvio(HttpContext context)
+        {
+            var historialDto = await context.Request.ReadFromJsonAsync<HistorialEnvioCommandDto>();
+            var result = await _historialEnvioService.CreateHistorialEnvioAsync(historialDto);
+            return new CreatedAtActionResult(nameof(GetHistorialEnvioById), "HistorialEnvio", new { id = result.Id }, result);
+        }
+
+        public async Task<IActionResult> UpdateHistorialEnvio(HttpContext context, Guid id)
+        {
+            var historialDto = await context.Request.ReadFromJsonAsync<HistorialEnvioCommandDto>();
+            var result = await _historialEnvioService.UpdateHistorialEnvioAsync(id, historialDto);
+            if (result == null) return new NotFoundResult();
+
+            return new OkObjectResult(result);
+        }
+
+        public async Task<IActionResult> DeleteHistorialEnvio(HttpContext context, Guid id)
+        {
+            var success = await _historialEnvioService.DeleteHistorialEnvioAsync(id);
+            if (!success) return new NotFoundResult();
+
+            return new NoContentResult();
+        }
+
+        public async Task<IActionResult> GetHistorialEnvioById(HttpContext context, Guid id)
+        {
+            var result = await _historialEnvioService.GetHistorialEnvioByIdAsync(id);
+            if (result == null) return new NotFoundResult();
+
+            return new OkObjectResult(result);
+        }
+    }
+}
