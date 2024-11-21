@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\armoa\\OneDrive\\Documentos\\GitHub\\-Logistica\\LogisticaSRL\\api\\Api.csproj": {}
+    "C:\\Users\\armoa\\OneDrive\\Documentos\\GitHub\\-Logistica\\LogisticaSRL\\Api\\Api.csproj": {}
   },
   "projects": {
-    "C:\\Users\\armoa\\OneDrive\\Documentos\\GitHub\\-Logistica\\LogisticaSRL\\api\\Api.csproj": {
+    "C:\\Users\\armoa\\OneDrive\\Documentos\\GitHub\\-Logistica\\LogisticaSRL\\Api\\Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\armoa\\OneDrive\\Documentos\\GitHub\\-Logistica\\LogisticaSRL\\api\\Api.csproj",
+        "projectUniqueName": "C:\\Users\\armoa\\OneDrive\\Documentos\\GitHub\\-Logistica\\LogisticaSRL\\Api\\Api.csproj",
         "projectName": "Api",
-        "projectPath": "C:\\Users\\armoa\\OneDrive\\Documentos\\GitHub\\-Logistica\\LogisticaSRL\\api\\Api.csproj",
+        "projectPath": "C:\\Users\\armoa\\OneDrive\\Documentos\\GitHub\\-Logistica\\LogisticaSRL\\Api\\Api.csproj",
         "packagesPath": "C:\\Users\\armoa\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\armoa\\OneDrive\\Documentos\\GitHub\\-Logistica\\LogisticaSRL\\api\\obj\\",
+        "outputPath": "C:\\Users\\armoa\\OneDrive\\Documentos\\GitHub\\-Logistica\\LogisticaSRL\\Api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\armoa\\AppData\\Roaming\\NuGet\\NuGet.Config"

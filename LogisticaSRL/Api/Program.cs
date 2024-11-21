@@ -29,8 +29,8 @@ if (app.Environment.IsDevelopment())
 // Asegurar que la base de datos esté creada
 using (var scope = app.Services.CreateScope())
 {
-    var context = scope.ServiceProvider.GetRequiredService<GestionPedidoDbContext>();
-    context.Database.EnsureCreated();
+    var dbContext = scope.ServiceProvider.GetRequiredService<GestionPedidoDbContext>();
+    dbContext.Database.EnsureCreated();
 }
 
 // Mapear endpoints
