@@ -8,10 +8,14 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-builder.Services.AddDbContext<GestionPedidoDbContext>(options =>
-    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
+builder.Services.AddDbContext<GestionPedidoDbContext>(options => options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));    
 
-builder.Services.AddScoped<CentralService>();
+var options = new DbContextOptionsBuilder<GestionPedidoDbContext>();
+options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
+
+var context = new GestionPedidoDbContext(options.Options);
+
+context.Database.EnsureCreated();
 
 var app = builder.Build();
 
