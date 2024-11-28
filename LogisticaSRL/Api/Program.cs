@@ -1,43 +1,54 @@
+using Api;
+using Api.Funcionalidades.Centrales;
+using Api.Funcionalidades.Envios;
+using Api.Funcionalidades.HistorialesEnvio;
+using Api.Funcionalidades.IntentosEntrega;
 using Api.Persistencia;
 using Microsoft.EntityFrameworkCore;
-using Api.Funcionalidades.Centrales;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Add services to the container.
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-builder.Services.AddDbContext<GestionPedidoDbContext>(options => options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));    
+// Database configuration
+builder.Services.AddDbContext<GestionPedidoDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-var options = new DbContextOptionsBuilder<GestionPedidoDbContext>();
-options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
+// Register ServiceManager
+builder.Services.AddScoped<ServiceManager>();
 
-var context = new GestionPedidoDbContext(options.Options);
-
-context.Database.EnsureCreated();
+// Register individual services
+builder.Services.AddScoped<CentralService>();
+builder.Services.AddScoped<EnviosService>();
+builder.Services.AddScoped<HistorialEnvioService>();
+builder.Services.AddScoped<IntentoEntregaService>();
 
 var app = builder.Build();
 
+// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
-    app.UseHttpsRedirection();
 }
 
-// Asegurar que la base de datos esté creada
-using (var scope = app.Services.CreateScope())
-{
-    var dbContext = scope.ServiceProvider.GetRequiredService<GestionPedidoDbContext>();
-    dbContext.Database.EnsureCreated();
-}
+app.UseHttpsRedirection();
 
-// Mapear endpoints
-app.MapPost("/Centrales", async (CentralService centralService, CentralCommandDto dto) =>
-{
-    var result = await centralService.CreateCentralAsync(dto);
-    return Results.Created($"/Centrales/{result.IdCentral}", result);
-});
+// Map endpoints
+var apiGroup = app.MapGroup("/api");
+
+apiGroup.MapGroup("/centrales")
+    .MapCentralEndpoints();
+
+apiGroup.MapGroup("/envios")
+    .MapEnviosEndpoints();
+
+apiGroup.MapGroup("/historialesenvio")
+    .MapHistorialEnvioEndpoints();
+
+apiGroup.MapGroup("/intentosentrega")
+    .MapIntentoEntregaEndpoints();
 
 app.Run();

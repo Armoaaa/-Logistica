@@ -4,7 +4,7 @@ namespace Biblioteca.Dominio;
 public class Domicilio
 {
     [Key]
-    public int Id { get; set; }
+    public int IdDomicilio { get; set; }
     public string Pais { get; set;}
     public string Ciudad { get; set; }
 

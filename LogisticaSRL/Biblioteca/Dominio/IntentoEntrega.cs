@@ -1,4 +1,3 @@
-
 using System.ComponentModel.DataAnnotations;
 
 
@@ -24,5 +23,8 @@ public class IntentoEntrega
 
     [Required]
     public DateTime FechaIntento { get; set; }
+
+    [Required]
+    public DateTime FechaCreacion { get; set; }
 
 }

@@ -1,10 +1,14 @@
-namespace Api.Funcionalidades
+using Biblioteca.Dominio;
+
+namespace Api.Funcionalidades.Personas
 {
     public class PersonaQueryDto
     {
-        public Guid Id { get; set; } // Agregar GUID
+        public int IdPersona { get; set; }
         public int TipoDNIId { get; set; }
+        public TipoDNI TipoDNI { get; set; }
         public int DomicilioId { get; set; }
+        public Domicilio Domicilio { get; set; }
         public int DNI { get; set; }
         public string PaisResidente { get; set; }
         public string Nombre { get; set; }
@@ -13,7 +17,6 @@ namespace Api.Funcionalidades
 
     public class PersonaCommandDto
     {
-        public Guid Id { get; set; } // Agregar GUID
         public int TipoDNIId { get; set; }
         public int DomicilioId { get; set; }
         public int DNI { get; set; }

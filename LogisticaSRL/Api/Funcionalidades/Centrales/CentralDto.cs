@@ -1,15 +1,18 @@
-namespace Api.Funcionalidades
+using Biblioteca.Dominio;
+
+namespace Api.Funcionalidades.Centrales
 {
     public class CentralQueryDto
     {
-        public Guid Id { get; set; } // Agregar GUID
+        public int IdCentral { get; set; }
         public string Nombre { get; set; }
         public int DomicilioId { get; set; }
+        public Domicilio domicilio { get; set; }
+        public ICollection<Sucursal> Sucursales { get; set; }
     }
 
     public class CentralCommandDto
     {
-        public Guid Id { get; set; } // Agregar GUID
         public string Nombre { get; set; }
         public int DomicilioId { get; set; }
     }

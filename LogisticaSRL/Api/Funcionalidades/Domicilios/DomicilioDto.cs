@@ -1,8 +1,10 @@
-namespace Api.Funcionalidades
+using Biblioteca.Dominio;
+
+namespace Api.Funcionalidades.Domicilios
 {
     public class DomicilioQueryDto
     {
-        public Guid Id { get; set; } // Agregar GUID
+        public int IdDomicilio { get; set; }
         public string Pais { get; set; }
         public string Ciudad { get; set; }
         public string Calle { get; set; }
@@ -12,7 +14,6 @@ namespace Api.Funcionalidades
 
     public class DomicilioCommandDto
     {
-        public Guid Id { get; set; } // Agregar GUID
         public string Pais { get; set; }
         public string Ciudad { get; set; }
         public string Calle { get; set; }
