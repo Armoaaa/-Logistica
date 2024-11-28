@@ -3,6 +3,7 @@ using System;
 using Api.Persistencia;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
@@ -11,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Api.Persistencia.Migraciones
 {
     [DbContext(typeof(GestionPedidoDbContext))]
-    [Migration("20241121131707_InitialMigration")]
+    [Migration("20241128124919_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -20,7 +21,9 @@ namespace Api.Persistencia.Migraciones
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "8.0.0")
-                .HasAnnotation("Relational:MaxIdentifierLength", 64);
+                .HasAnnotation("Relational:MaxIdentifierLength", 128);
+
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
             modelBuilder.Entity("Biblioteca.Dominio.Central", b =>
                 {
@@ -28,12 +31,14 @@ namespace Api.Persistencia.Migraciones
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdCentral"));
+
                     b.Property<int>("DomicilioId")
                         .HasColumnType("int");
 
                     b.Property<string>("Nombre")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("IdCentral");
 
@@ -44,30 +49,32 @@ namespace Api.Persistencia.Migraciones
 
             modelBuilder.Entity("Biblioteca.Dominio.Domicilio", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("IdDomicilio")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdDomicilio"));
+
                     b.Property<string>("Calle")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Ciudad")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CodigoPostal")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Numero")
                         .HasColumnType("int");
 
                     b.Property<string>("Pais")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("IdDomicilio");
 
                     b.ToTable("Domicilios");
                 });
@@ -78,6 +85,8 @@ namespace Api.Persistencia.Migraciones
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("NumeroSeguimiento"));
+
                     b.Property<int>("CentralDespachoId")
                         .HasColumnType("int");
 
@@ -86,13 +95,13 @@ namespace Api.Persistencia.Migraciones
 
                     b.Property<string>("Dimensiones")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("FechaActualizacion")
-                        .HasColumnType("datetime(6)");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("FechaCreacion")
-                        .HasColumnType("datetime(6)");
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("IdPersonaEmisora")
                         .HasColumnType("int");
@@ -101,7 +110,7 @@ namespace Api.Persistencia.Migraciones
                         .HasColumnType("int");
 
                     b.Property<decimal>("Peso")
-                        .HasColumnType("decimal(65,30)");
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("SucursalDespachoId")
                         .HasColumnType("int");
@@ -141,11 +150,13 @@ namespace Api.Persistencia.Migraciones
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdHistorialEnvio"));
+
                     b.Property<DateTime>("FechaCambio")
-                        .HasColumnType("datetime(6)");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("FechaCreacion")
-                        .HasColumnType("datetime(6)");
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("NumeroSeguimiento")
                         .HasColumnType("int");
@@ -174,14 +185,19 @@ namespace Api.Persistencia.Migraciones
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdIntentoEntrega"));
+
                     b.Property<bool>("Entregado")
-                        .HasColumnType("tinyint(1)");
+                        .HasColumnType("bit");
 
                     b.Property<int>("EnvioNumeroSeguimiento")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("FechaCreacion")
+                        .HasColumnType("datetime2");
+
                     b.Property<DateTime>("FechaIntento")
-                        .HasColumnType("datetime(6)");
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("NumeroIntento")
                         .HasColumnType("int");
@@ -207,9 +223,11 @@ namespace Api.Persistencia.Migraciones
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdPersona"));
+
                     b.Property<string>("Apellido")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("DNI")
                         .HasColumnType("int");
@@ -219,11 +237,11 @@ namespace Api.Persistencia.Migraciones
 
                     b.Property<string>("Nombre")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PaisResidente")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("TipoDNIId")
                         .HasColumnType("int");
@@ -243,6 +261,8 @@ namespace Api.Persistencia.Migraciones
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdSucursal"));
+
                     b.Property<int>("CentralIdCentral")
                         .HasColumnType("int");
 
@@ -254,7 +274,7 @@ namespace Api.Persistencia.Migraciones
 
                     b.Property<string>("Nombre")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("NumeroS")
                         .HasColumnType("int");
@@ -274,12 +294,14 @@ namespace Api.Persistencia.Migraciones
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdTipoDni"));
+
                     b.Property<bool>("DNIextranjero")
-                        .HasColumnType("tinyint(1)");
+                        .HasColumnType("bit");
 
                     b.Property<string>("Pais")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("IdTipoDni");
 

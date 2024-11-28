@@ -1,5 +1,4 @@
 ﻿using System;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
@@ -12,55 +11,44 @@ namespace Api.Persistencia.Migraciones
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AlterDatabase()
-                .Annotation("MySql:CharSet", "utf8mb4");
-
             migrationBuilder.CreateTable(
                 name: "Domicilios",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Pais = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Ciudad = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Calle = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    IdDomicilio = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Pais = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Ciudad = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Calle = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Numero = table.Column<int>(type: "int", nullable: false),
-                    CodigoPostal = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4")
+                    CodigoPostal = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Domicilios", x => x.Id);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                    table.PrimaryKey("PK_Domicilios", x => x.IdDomicilio);
+                });
 
             migrationBuilder.CreateTable(
                 name: "TipoDNI",
                 columns: table => new
                 {
                     IdTipoDni = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    DNIextranjero = table.Column<bool>(type: "tinyint(1)", nullable: false),
-                    Pais = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4")
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    DNIextranjero = table.Column<bool>(type: "bit", nullable: false),
+                    Pais = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_TipoDNI", x => x.IdTipoDni);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                });
 
             migrationBuilder.CreateTable(
                 name: "Centrales",
                 columns: table => new
                 {
                     IdCentral = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Nombre = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     DomicilioId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -70,26 +58,22 @@ namespace Api.Persistencia.Migraciones
                         name: "FK_Centrales_Domicilios_DomicilioId",
                         column: x => x.DomicilioId,
                         principalTable: "Domicilios",
-                        principalColumn: "Id",
+                        principalColumn: "IdDomicilio",
                         onDelete: ReferentialAction.Cascade);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                });
 
             migrationBuilder.CreateTable(
                 name: "Personas",
                 columns: table => new
                 {
                     IdPersona = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     TipoDNIId = table.Column<int>(type: "int", nullable: false),
                     DomicilioId = table.Column<int>(type: "int", nullable: false),
                     DNI = table.Column<int>(type: "int", nullable: false),
-                    PaisResidente = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Nombre = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Apellido = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4")
+                    PaisResidente = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Apellido = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -98,7 +82,7 @@ namespace Api.Persistencia.Migraciones
                         name: "FK_Personas_Domicilios_DomicilioId",
                         column: x => x.DomicilioId,
                         principalTable: "Domicilios",
-                        principalColumn: "Id",
+                        principalColumn: "IdDomicilio",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Personas_TipoDNI_TipoDNIId",
@@ -106,18 +90,16 @@ namespace Api.Persistencia.Migraciones
                         principalTable: "TipoDNI",
                         principalColumn: "IdTipoDni",
                         onDelete: ReferentialAction.Cascade);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                });
 
             migrationBuilder.CreateTable(
                 name: "Sucursales",
                 columns: table => new
                 {
                     IdSucursal = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     NumeroS = table.Column<int>(type: "int", nullable: false),
-                    Nombre = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     DomicilioId = table.Column<int>(type: "int", nullable: false),
                     IdCentral = table.Column<int>(type: "int", nullable: false),
                     CentralIdCentral = table.Column<int>(type: "int", nullable: false)
@@ -135,17 +117,16 @@ namespace Api.Persistencia.Migraciones
                         name: "FK_Sucursales_Domicilios_DomicilioId",
                         column: x => x.DomicilioId,
                         principalTable: "Domicilios",
-                        principalColumn: "Id",
+                        principalColumn: "IdDomicilio",
                         onDelete: ReferentialAction.Cascade);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                });
 
             migrationBuilder.CreateTable(
                 name: "Envios",
                 columns: table => new
                 {
                     NumeroSeguimiento = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     IdPersonaEmisora = table.Column<int>(type: "int", nullable: false),
                     personaEmisoraIdPersona = table.Column<int>(type: "int", nullable: false),
                     IdPersonaReceptora = table.Column<int>(type: "int", nullable: false),
@@ -155,11 +136,10 @@ namespace Api.Persistencia.Migraciones
                     CentralDespachoId = table.Column<int>(type: "int", nullable: false),
                     CentralDestinoId = table.Column<int>(type: "int", nullable: false),
                     estadoEnvio = table.Column<int>(type: "int", nullable: false),
-                    Dimensiones = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Peso = table.Column<decimal>(type: "decimal(65,30)", nullable: false),
-                    FechaCreacion = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    FechaActualizacion = table.Column<DateTime>(type: "datetime(6)", nullable: false)
+                    Dimensiones = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Peso = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    FechaCreacion = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    FechaActualizacion = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -200,21 +180,20 @@ namespace Api.Persistencia.Migraciones
                         principalTable: "Sucursales",
                         principalColumn: "IdSucursal",
                         onDelete: ReferentialAction.Cascade);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                });
 
             migrationBuilder.CreateTable(
                 name: "HistorialesEnvio",
                 columns: table => new
                 {
                     IdHistorialEnvio = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     NumeroSeguimiento = table.Column<int>(type: "int", nullable: false),
                     envioNumeroSeguimiento = table.Column<int>(type: "int", nullable: false),
                     SucursalId = table.Column<int>(type: "int", nullable: false),
                     estadoEnvio = table.Column<int>(type: "int", nullable: false),
-                    FechaCambio = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    FechaCreacion = table.Column<DateTime>(type: "datetime(6)", nullable: false)
+                    FechaCambio = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    FechaCreacion = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -231,21 +210,21 @@ namespace Api.Persistencia.Migraciones
                         principalTable: "Sucursales",
                         principalColumn: "IdSucursal",
                         onDelete: ReferentialAction.Cascade);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                });
 
             migrationBuilder.CreateTable(
                 name: "IntentosEntrega",
                 columns: table => new
                 {
                     IdIntentoEntrega = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     NumeroSeguimiento = table.Column<int>(type: "int", nullable: false),
                     EnvioNumeroSeguimiento = table.Column<int>(type: "int", nullable: false),
                     SucursalId = table.Column<int>(type: "int", nullable: false),
                     NumeroIntento = table.Column<int>(type: "int", nullable: false),
-                    Entregado = table.Column<bool>(type: "tinyint(1)", nullable: false),
-                    FechaIntento = table.Column<DateTime>(type: "datetime(6)", nullable: false)
+                    Entregado = table.Column<bool>(type: "bit", nullable: false),
+                    FechaIntento = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    FechaCreacion = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -262,8 +241,7 @@ namespace Api.Persistencia.Migraciones
                         principalTable: "Sucursales",
                         principalColumn: "IdSucursal",
                         onDelete: ReferentialAction.Cascade);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Centrales_DomicilioId",
