@@ -7,6 +7,7 @@ using Api.Funcionalidades.IntentosEntrega;
 using Api.Funcionalidades.Personas;
 using Api.Funcionalidades.Sucursales;
 using Api.Persistencia;
+using Scalar.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -36,10 +37,13 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwagger(options =>
+    {
+        options.RouteTemplate = "/openapi/{documentName}.json";
+    });
+    app.MapScalarApiReference();
+    app.UseHttpsRedirection();
 }
-
 app.UseHttpsRedirection();
 
 // Map endpoints
